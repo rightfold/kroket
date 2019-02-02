@@ -1,0 +1,7 @@
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+// TODO: Replace this with a type class method on Semigroupoid.
+value Compose
+    of forall a in forall b in forall c in (b -> c) -> (a -> b) -> a -> c
+    is lambda f in lambda g in lambda x in f (g x);

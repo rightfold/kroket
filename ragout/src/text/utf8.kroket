@@ -1,0 +1,22 @@
+/// <p>Convert UTF-8 text into the code units that make it up. No byte order
+/// mark is included in the result.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// <dt>Time complexity</dt>    <dd>O(1)</dd>
+/// <dt>Space complexity</dt>   <dd>O(1)</dd>
+/// </dl>
+value Utf8CodeUnits
+    of Utf8 -> Bytes
+    is risk {MemoryCorruption} Coerce;
+
+/// <p>Write the code units of the given UTF-8 text to a writer. No byte order
+/// mark is written, no locale-specific transformation is applied, and line
+/// endings are not rewritten.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+value WriteUtf8
+    of forall m in Writer m -> Utf8 -> m Unit
+    is lambda w in Compose (Write w) Utf8CodeUnits;

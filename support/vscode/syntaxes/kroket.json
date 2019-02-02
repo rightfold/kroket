@@ -1,0 +1,30 @@
+{
+    "scopeName": "source.kroket",
+    "patterns": [
+        {
+            "name": "comment.line.//.kroket",
+            "begin": "//(?!/)",
+            "end": "\\n"
+        },
+        {
+            "name": "comment.line.///.kroket",
+            "contentName": "meta.embedded.documentation.kroket",
+            "begin": "///( |$)",
+            "end": "\\n",
+            "patterns": [
+                {
+                    "include": "text.xml"
+                }
+            ]
+        },
+        {
+            "name": "keyword.other.kroket",
+            "match": "\\b(forall|hazard|in|intrinsic|is|lambda|of|risk|value)\\b|->|-{|}>|{|}|\\(|\\)|;|\\."
+        },
+        {
+            "name": "string.quoted.double.stardust.utf8",
+            "begin": "utf8\"",
+            "end": "\""
+        }
+    ]
+}

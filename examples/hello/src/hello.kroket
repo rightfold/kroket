@@ -1,0 +1,3 @@
+value Main
+    of forall e in Php -> Effect e Unit
+    is lambda php in WriteUtf8 php.Output utf8"Hello, world!";

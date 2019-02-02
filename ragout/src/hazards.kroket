@@ -1,0 +1,29 @@
+/// <p>Memory corruption happens when an algorithm accesses memory without
+/// appropriate bounds checks. Such access is often desirable because bounds
+/// checks incur runtime overhead.</p>
+///
+/// <p>Memory corruption is a very common source of data breaches, because
+/// memory may be accessed that would normally be restricted by authorization.
+/// Exercise extreme caution when risking this hazard.</p>
+///
+/// <p>Guarding against memory corruption requires knowledge about the exact
+/// inputs for which the algorithm accesses out-of-bounds memory. As such, any
+/// place where this hazard is risked is fragile.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+hazard MemoryCorruption;
+
+/// <p>Non-termination happens when an algorithm panics or enters an infinite
+/// loop. The need for a non-terminating algorithm hints at the use of types
+/// that insufficiently describe the problem.</p>
+///
+/// <p>Guarding against nontermination requires knowledge about the exact
+/// inputs for which the algorithm does not terminate. As such, any place where
+/// this hazard is risked is fragile.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+hazard NonTermination;

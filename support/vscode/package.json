@@ -1,0 +1,33 @@
+{
+    "name": "kroket",
+    "version": "0.0.0",
+    "publisher": "foldr",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "displayName": "Kroket",
+    "contributes": {
+        "languages": [
+            {
+                "id": "kroket",
+                "aliases": [
+                    "Kroket",
+                    "kroket"
+                ],
+                "extensions": [
+                    ".kroket"
+                ]
+            }
+        ],
+        "grammars": [
+            {
+                "language": "kroket",
+                "scopeName": "source.kroket",
+                "path": "./syntaxes/kroket.json",
+                "embeddedLanguages": {
+                    "meta.embedded.documentation.kroket": "xml"
+                }
+            }
+        ]
+    }
+}

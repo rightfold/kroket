@@ -1,0 +1,15 @@
+Kroket is the programming language.
+Frituur is the compiler.
+Mosterd is a set of build utilities.
+Ragout is the standard library.
+
+Requirements:
+
+ - Functional programming (i.e. pure and total).
+ - No imprecise exceptions.
+ - No unchecked exceptions.
+ - Very explicit APIs: no defaults or compromises for "ease".
+ - Give the programmer a lot of choice; TIMTOWTDI.
+ - Pass environment facilities to main; no globals.
+ - Compile all translation units in parallel.
+ - Extensive standard library, no hundreds of microlibraries.

@@ -1,0 +1,10 @@
+/// <p>Write all provided data to a writer. The data is written as-is; no
+/// locale-specific transformation is applied, and line endings are not
+/// rewritten.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+value Write
+    of forall m in Writer m -> Bytes -> m Unit
+    is lambda w in w.Write;

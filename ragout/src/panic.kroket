@@ -1,0 +1,18 @@
+/// <p>Panicking will emit a message and immediately terminate the calling
+/// process. The mechanisms by which the message is emitted and the process is
+/// terminated are environment-dependent.</p>
+///
+/// <p>Finalizers are not guaranteed to be called and it is not possible to
+/// recover from a call to Panic. To report invalid inputs to a function,
+/// return an error instead of calling Panic.</p>
+///
+/// <p>Panicking is useful when you need to implement a branch you know will
+/// never be entered. However, careful type design can eliminate most needs for
+/// Panic.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+value Panic
+    of forall a in Bytes -{NonTermination}> a
+    is intrinsic panic;

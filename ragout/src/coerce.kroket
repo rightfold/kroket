@@ -1,0 +1,16 @@
+/// <p>The Coerce function returns its input, unchanged, but as a different
+/// type. It is up to the programmer to ensure that the types have compatible
+/// runtime representations.</p>
+///
+/// <p>It is customary to not rely on type inference when using Coerce. Rather,
+/// define an alias for Coerce with a specific type, to reduce the chance that
+/// the Coerce becomes unsafe after changes to surrounding code.</p>
+///
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// <dt>Time complexity</dt>    <dd>O(1)</dd>
+/// <dt>Space complexity</dt>   <dd>O(1)</dd>
+/// </dl>
+value Coerce
+    of forall a in forall b in a -{MemoryCorruption}> b
+    is intrinsic coerce;
