@@ -91,7 +91,8 @@ Type2
   | Type2 Type1 { ApplyType (unA $1) $1 $2 }
 
 Type1
-  : forall identifier in Type { ForallType (mkA $1 []) (snd $2) $4 }
+  : forall Identifiers in Type
+      { foldr (ForallType (mkA $1 [])) $4 (fmap snd $2) }
   | identifier { VariableType (mkA (fst $1) []) (snd $1) }
   | leftParenthesis Type rightParenthesis { $2 }
 
@@ -112,7 +113,8 @@ Term2
 Term1
   : identifier { VariableTerm (mkA (fst $1) []) (snd $1) }
   | intrinsic identifier { IntrinsicTerm (mkA $1 []) (mkI (snd $2)) }
-  | lambda identifier in Term { LambdaTerm (mkA $1 []) (snd $2) ($4) }
+  | lambda Identifiers in Term
+      { foldr (LambdaTerm (mkA $1 [])) $4 (fmap snd $2) }
   | risk leftBrace identifier rightBrace Term
       { RiskTerm (mkA $1 []) (HS.singleton (snd $3)) $5 }
   | leftParenthesis Term rightParenthesis { $2 }
@@ -127,6 +129,10 @@ Documentation
 
 Literal
   : utf8Literal { $1 & _2 %~ Utf8Literal }
+
+Identifiers
+  : { [] }
+  | identifier Identifiers { $1 : $2 }
 
 {
 mkA :: Location -> [T.Text] -> Annotation

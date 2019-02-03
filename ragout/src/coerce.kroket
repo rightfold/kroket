@@ -12,5 +12,5 @@
 /// <dt>Space complexity</dt>   <dd>O(1)</dd>
 /// </dl>
 value Coerce
-    of forall a in forall b in a -{MemoryCorruption}> b
+    of forall a b in a -{MemoryCorruption}> b
     is intrinsic coerce;
