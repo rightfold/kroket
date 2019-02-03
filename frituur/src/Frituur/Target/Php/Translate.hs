@@ -79,6 +79,15 @@ translateAnfExpression resultVariable expression@(AnfLambda _ parameter body) =
   mkUse xs = " use(" <> fold (intersperse ", " xs') <> ")"
                where xs' = fmap (mappend "$" . kt) xs
 
+translateAnfExpression resultVariable (AnfMakeRecord _ fields) =
+  resultVariable <> " = [\n" <>
+    foldMap translateField fields <>
+  "];\n"
+  where
+  translateField (name, expression) =
+    "'" <> kf name <> "' => " <>
+      translateAnfValue expression <> ",\n"
+
 --------------------------------------------------------------------------------
 -- translateAnfValue
 

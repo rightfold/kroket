@@ -64,6 +64,7 @@ data AnfExpression a
   = AnfApply a (AnfValue a) (AnfValue a)
   | AnfGetRecordField a (AnfValue a) Identifier
   | AnfLambda a Temporary (AnfProgram a)
+  | AnfMakeRecord a [(Identifier, AnfValue a)]
   deriving stock (Eq, Foldable, Functor, Show, Traversable)
 
 data AnfValue a
@@ -103,6 +104,7 @@ instance HasAnfFreeLocals (AnfExpression a) where
   anfFreeLocals (AnfApply _ a b) = anfFreeLocals a <> anfFreeLocals b
   anfFreeLocals (AnfGetRecordField _ a _) = anfFreeLocals a
   anfFreeLocals (AnfLambda _ a b) = anfFreeLocals b & at a .~ Nothing
+  anfFreeLocals (AnfMakeRecord _ a) = foldMap (anfFreeLocals . snd) a
 
 instance HasAnfFreeLocals (AnfValue a) where
   anfFreeLocals (AnfLocal _ a) = HS.singleton a

@@ -19,6 +19,8 @@ import qualified Data.Text.Lazy.Encoding as TLE
   "//"$                 ;
   "//"[^\/].*$          ;
 
+  "end"                 { \p _ -> EndToken       (mkL p) }
+  "field"               { \p _ -> FieldToken     (mkL p) }
   "forall"              { \p _ -> ForallToken    (mkL p) }
   "hazard"              { \p _ -> HazardToken    (mkL p) }
   "in"                  { \p _ -> InToken        (mkL p) }
@@ -26,6 +28,7 @@ import qualified Data.Text.Lazy.Encoding as TLE
   "is"                  { \p _ -> IsToken        (mkL p) }
   "lambda"              { \p _ -> LambdaToken    (mkL p) }
   "of"                  { \p _ -> OfToken        (mkL p) }
+  "record"              { \p _ -> RecordToken    (mkL p) }
   "risk"                { \p _ -> RiskToken      (mkL p) }
   "value"               { \p _ -> ValueToken     (mkL p) }
 
@@ -47,13 +50,16 @@ import qualified Data.Text.Lazy.Encoding as TLE
 
 {
 data Token
-  = ForallToken Location
+  = EndToken Location
+  | FieldToken Location
+  | ForallToken Location
   | HazardToken Location
   | InToken Location
   | IntrinsicToken Location
   | IsToken Location
   | LambdaToken Location
   | OfToken Location
+  | RecordToken Location
   | RiskToken Location
   | ValueToken Location
 

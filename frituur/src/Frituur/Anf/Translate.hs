@@ -61,6 +61,10 @@ translateTerm (LambdaTerm a parameter body) =
 translateTerm (LiteralTerm a literal) =
   A.literal a literal
 
+translateTerm (MakeRecordTerm a fields) = do
+  fields' <- traverse (traverse translateTerm) fields
+  A.makeRecord a fields'
+
 translateTerm (RiskTerm _ _ risky) =
   translateTerm risky
 

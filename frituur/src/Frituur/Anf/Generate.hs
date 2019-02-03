@@ -11,6 +11,7 @@ module Frituur.Anf.Generate
   , apply
   , getRecordField
   , lambda
+  , makeRecord
 
   , global
   , intrinsic
@@ -92,6 +93,9 @@ lambda a body = do
   bindings    <- GenerateT $ stateBindings <<.= oldBindings
 
   emitBinding $ AnfLambda a argument (AnfProgram bindings result)
+
+makeRecord :: Monad m => a -> [(Identifier, AnfValue a)] -> GenerateT a m (AnfValue a)
+makeRecord a fields = emitBinding (AnfMakeRecord a fields)
 
 global :: Applicative m => a -> Identifier -> m (AnfValue a)
 global = (pure .) . AnfGlobal

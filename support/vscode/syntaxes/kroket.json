@@ -19,7 +19,7 @@
         },
         {
             "name": "keyword.other.kroket",
-            "match": "\\b(forall|hazard|in|intrinsic|is|lambda|of|risk|value)\\b|->|-{|}>|{|}|\\(|\\)|;|\\."
+            "match": "\\b(end|field|forall|hazard|in|intrinsic|is|lambda|of|record|risk|value)\\b|->|-{|}>|{|}|\\(|\\)|;|\\."
         },
         {
             "name": "string.quoted.double.stardust.utf8",

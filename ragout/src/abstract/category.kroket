@@ -1,7 +1,26 @@
+// TODO: Make Semigroup and Category type classes once type classes are
+// TODO: implemented. Replace existing uses with implicit dictionary passing.
+
 /// <dl>
 /// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
 /// </dl>
-// TODO: Replace this with a type class method on Semigroupoid.
 value Compose
-    of forall a b c in (b -> c) -> (a -> b) -> a -> c
-    is lambda f g x in f (g x);
+    of forall r k a b c in Semigroupoid k r -> k b c -> k a b -> k a c
+    is lambda r in r.Compose;
+
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+value Identity
+    of forall r k a in Category k r -> k a a
+    is lambda r in r.Identity;
+
+/// <dl>
+/// <dt>Introduced</dt>         <dd>Ragout 0.0.0</dd>
+/// </dl>
+value FunctionCategory
+    of forall r in Category Function r
+    is record
+        field Compose is lambda f g x in f (g x);
+        field Identity is lambda x in x;
+    end;

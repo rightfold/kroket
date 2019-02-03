@@ -44,6 +44,7 @@ data Term a
   | IntrinsicTerm a Intrinsic
   | LambdaTerm a Identifier (Term a)
   | LiteralTerm a Literal
+  | MakeRecordTerm a [(Identifier, Term a)]
   | RiskTerm a (HashSet Identifier) (Term a)
   | VariableTerm a Identifier
   deriving stock (Eq, Foldable, Functor, Show, Traversable)

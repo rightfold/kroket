@@ -26,6 +26,8 @@ import qualified Frituur.Intrinsic as Intrinsic
 -- Tokens
 
 %token
+  end                       { EndToken       $$ }
+  field                     { FieldToken     $$ }
   forall                    { ForallToken    $$ }
   hazard                    { HazardToken    $$ }
   in                        { InToken        $$ }
@@ -33,6 +35,7 @@ import qualified Frituur.Intrinsic as Intrinsic
   is                        { IsToken        $$ }
   lambda                    { LambdaToken    $$ }
   of                        { OfToken        $$ }
+  record                    { RecordToken    $$ }
   risk                      { RiskToken      $$ }
   value                     { ValueToken     $$ }
 
@@ -115,6 +118,7 @@ Term1
   | intrinsic identifier { IntrinsicTerm (mkA $1 []) (mkI (snd $2)) }
   | lambda Identifiers in Term
       { foldr (LambdaTerm (mkA $1 [])) $4 (fmap snd $2) }
+  | record Fields end { MakeRecordTerm (mkA $1 []) (fmap snd $2) }
   | risk leftBrace identifier rightBrace Term
       { RiskTerm (mkA $1 []) (HS.singleton (snd $3)) $5 }
   | leftParenthesis Term rightParenthesis { $2 }
@@ -133,6 +137,13 @@ Literal
 Identifiers
   : { [] }
   | identifier Identifiers { $1 : $2 }
+
+Fields
+  : { [] }
+  | Field Fields { $1 : $2 }
+
+Field
+  : field identifier is Term semicolon { ($1, (snd $2, $4)) }
 
 {
 mkA :: Location -> [T.Text] -> Annotation
