@@ -47,6 +47,7 @@ library
     Frituur.Ast,
     Frituur.Ast.Lex,
     Frituur.Ast.Parse,
+    Frituur.Interface,
     Frituur.Intrinsic,
     Frituur.Literal,
     Frituur.Location,
